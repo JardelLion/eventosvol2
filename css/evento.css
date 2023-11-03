@@ -1,0 +1,41 @@
+
+.box-border__main {
+    box-shadow: 2px 2px 8px gray;
+    padding: 20px;
+    margin-top: 40px;
+}
+.box-border__main .box-border {
+    margin-top: 10px;
+}
+
+.box-border__main .box-border:first-child div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 4px 0px;
+    padding: 0 20px;
+    
+}
+
+.box-border__main .box-border:first-child {
+    flex-direction: column;
+}
+
+
+
+.second div:first-child,
+.second div {
+    width:23%;
+    margin: auto -1px;
+}
+
+
+
+@media (max-width:715px){
+    .second div:first-child,
+    .second div {
+        width: 83%;
+        margin: 6px auto;
+
+    }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calend�rio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 200px; /* Largura fixa de 200px */
+            border-collapse: separate;
+            border-spacing: 5px; /* Espacamento entre colunas e linhas */
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 0;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            width: 20px; /* Largura reduzida das c�lulas */
+            height: 60px; /* Altura das c�lulas */
+            position: relative;
+            margin: 0; /* Zere as margens para evitar duplica��o de espa�amento */
+            border-radius: 3px; /* Arredondamento das bordas */
+        }
+
+        td span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 8px;
+            padding: 3px;
+            margin: 0; /* Zere as margens para evitar duplica��o de espa�amento */
+        }
+
+        td:hover {
+            background-color: #e0e0e0;
+        }
+
+        .current-day {
+            background-color: #6ad14f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calend�rio</h1>
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <span class="prev-month">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="24px",
+                    height='24px',
+                    viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                </svg>
+                
+            </span>
+            <h1 id="current-month" class="month-label">Janeiro 2023</h1>
+            <span class="next-month">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                width="24px",
+                height='24px',
+                viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                </svg>
+            </span>
+        </div>
+        <table>
+            
+            <tbody id="calendar-body">
+                <!-- Aqui voce pode adicionar dinamicamente os dias do mes -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const prevMonthButton = document.querySelector('.prev-month');
+        const nextMonthButton = document.querySelector('.next-month');
+        const currentMonthDisplay = document.getElementById('current-month');
+        const calendarBody = document.getElementById('calendar-body');
+
+        function generateCalendar() {
+            const currentDate = new Date();
+            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const today = currentDate.getDate();
+
+            let day = new Date(firstDayOfMonth);
+
+            currentMonthDisplay.textContent = new Intl.DateTimeFormat('pt-BR', { year: 'numeric', month: 'long' }).format(currentDate);
+
+
+            calendarBody.innerHTML = '';
+
+            while (day <= lastDayOfMonth) {
+                const row = document.createElement('tr');
+
+                for (let i = 0; i < 7; i++) {
+                    const cell = document.createElement('td');
+                    cell.style.width = '20px'; /* Largura reduzida das c�lulas */
+                    cell.style.height = '60px'; /* Altura das c�lulas */
+                    cell.style.position = 'relative'; /* Garante que a posi��o seja relativa */
+                    cell.style.margin = '0'; /* Zere as margens para evitar duplica��o de espa�amento */
+                    cell.style.borderRadius = '3px'; /* Arredondamento das bordas */
+
+                    const span = document.createElement('span');
+                    span.textContent = day.getDate();
+                    span.style.fontSize = '8px';
+                    span.style.padding = '3px';
+                    span.style.margin = '0'; /* Zere as margens para evitar duplica��o de espa�amento */
+
+                    cell.appendChild(span);
+
+                    if (day.getDate() === today && day.getMonth() === currentDate.getMonth()) {
+                        cell.classList.add('current-day');
+                    }
+
+                    row.appendChild(cell);
+                    day.setDate(day.getDate() + 1);
+                }
+
+                calendarBody.appendChild(row);
+            }
+        }
+
+        // Logica para navegar para o mes anterior
+prevMonthButton.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    generateCalendar();
+});
+
+// Logica para navegar para o proximo mes
+nextMonthButton.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    generateCalendar();
+});
+
+
+        generateCalendar();
+    </script>
+</body>
+
+</html>

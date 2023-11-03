@@ -1,0 +1,307 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%; /* Largura fixa de 400px */
+    max-width:1000px;
+    border-collapse: separate;
+    border-spacing: 10px; /* Espacamento entre colunas e linhas */
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding: 10px;
+}
+
+.cell-style {
+    width:112.11px; 
+    height:115.92px; 
+    position:relative; 
+    margin:0; 
+    border-radius:6px; 
+            
+}
+
+
+
+@media (max-width:500px){
+    table {
+        width:300px;
+        border-collapse: collapse;
+        margin: 20px auto;
+    }
+
+    .cell-style {
+        height: 60px;
+        border-radius: 0;
+    }
+    
+}
+
+
+ th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 0;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td {
+    width: 30px; /* Largura reduzida das c�lulas */
+    height: 60px; /* Altura das c�lulas */
+    position: relative;
+    margin: 0; /* Zere as margens para evitar duplica��o de espa�amento */
+    border-radius: 6px; /* Arredondamento das bordas */
+}
+
+td span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 8;
+    padding: 3px;
+    margin: 0; /* Zere as margens para evitar duplica��o de espa�amento */
+}
+
+td:hover {
+    background-color: #e0e0e0;
+}
+
+
+
+.calendar-header {
+    text-align: center;
+}
+
+
+.content-image {
+    width: 100%;
+    margin: 0 auto;
+    height: 250px;
+    background-color: gray;
+    margin-top: 118px;
+}
+
+
+.box-home {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
+}
+.box-home .box-s {
+    width: 100%;
+    margin: 0px 4px;
+}
+
+
+
+
+@media (max-width:800px){
+    .box-home {
+        flex-direction: column;
+    }
+
+    .box-home .box-s {
+        margin: 4px 0;
+    }
+
+    .box__title a {
+        width: 100%;
+        max-width: 515px;
+        color: #000;
+        font-weight: normal;
+        font-size: 18px;
+       
+    }
+    
+}
+
+
+
+
+
+.month-label {
+    text-transform: uppercase;
+    font-size: 40px;
+    display: inline-block;
+}
+
+
+@media (max-width:750px){
+    .month-label {
+        font-size: 25px;
+    }
+}
+
+@media (max-width:500px){
+    .month-label {
+        font-size: 16px;
+    }
+}
+
+
+.box-home--end {
+    flex-direction: column;
+    margin: 18px 0;
+}
+
+
+.box-home--end .box-s {
+    
+    margin: 4px 0;
+
+
+}
+/* .box__green, */
+/* .box__title {
+    margin: 4px 0;
+}
+.number,
+.text {
+    text-align: center;
+    margin: 4px 0;
+    padding: 3px;
+} */
+
+
+
+.text {
+    text-align: left;
+}
+
+
+.border {
+   
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 3px 5px 15px  gray;
+    margin: 4px auto;
+    padding-top: 10px;
+    border-radius: 2px;
+}
+
+@media (max-width:500px){
+    .border {
+        border : none;
+    }
+}
+
+
+
+
+.prev-month,
+.next-month {
+    margin: 0 9px;
+    background-color: black;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+svg.svg-icon {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+}
+
+@media (max-width:500px){
+    svg.svg-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .prev-month,
+    .next-month {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+@media (max-width:750px){
+    svg.svg-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .prev-month,
+    .next-month {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+
+
+.svg-icon{
+    margin-top: 7px;
+}
+
+
+.weekdays-row th {
+    width: 40px;
+    padding: 4px;
+    background-color: transparent;
+    border: none;
+}
+
+td.current-month-day {
+    background-color: #d9d9d9;
+    opacity: 100%;
+    font-size: 15px;
+}
+
+td.no-current-month-day {
+    background-color: #d9d9d9;
+    opacity: 40%;
+    font-size: 30px;
+}
+
+td.current-day {
+    background-color: #46d09e;
+    color: white;
+    font-size: 30px;
+}
+
+
+
+@media (max-width:450px){
+
+    header, main {
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 42px;
+    }
+    
+    
+    .box__title a {
+        font-size: 14px;
+        text-indent: -6px;
+        text-align: center;
+
+    }
+}
+
+
+@media (max-width:500px){
+    table {
+        width:100%;
+        font-size: 4px;
+    }
+    .weekday {
+        font-size: 16px;
+    }
+
+
+    th, td {
+        padding: 5px;
+    }
+}
